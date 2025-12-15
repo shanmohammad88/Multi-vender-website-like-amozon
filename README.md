@@ -1,0 +1,2 @@
+# Multi-vender-website-like-amozon
+e-Market is a full-stack, enterprise-level e-commerce application built with PHP and MySQL. It features a custom AI Behavioral Recommendation Engine that scores user interest in real-time. Key features include a fully responsive Amazon-style UI, dynamic English/Arabic RTL layout switching, a robust Vendor Dashboard with analytics, Super Admin controls, Flash Deal management, and automated PDF invoicing.
