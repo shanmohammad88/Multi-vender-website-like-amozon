@@ -1,0 +1,635 @@
+/* assets/css/style.css - MASTER DESIGN FILE */
+
+/* 1. GLOBAL FONTS & COLORS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+    --primary: #febd69;   /* Amazon Yellow */
+    --dark: #131921;      /* Amazon Dark Blue */
+    --green: #28a745;     /* Success Green */
+    --red: #dc3545;       /* Danger Red */
+    --light: #f4f4f4;     /* Background Grey */
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light);
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}
+
+/* 2. LAYOUT UTILITIES */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 { margin-top: 0; color: #222; }
+
+/* 3. ANIMATED HERO SECTION (The Moving Ocean Effect) */
+.hero {
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #131921, #febd69);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 0 0 50% 50% / 20px; /* Curve at the bottom */
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 4. MODERN GLASSMORPHISM PRODUCT CARDS */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+    text-decoration: none; /* Removes underline from links */
+    color: inherit;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    z-index: 2; /* Brings card to front */
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card-body { padding: 25px; }
+
+.card-title {
+    margin: 0; font-size: 18px; color: #333; font-weight: 600;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.card-vendor { font-size: 13px; color: #777; margin-bottom: 10px; display: block; }
+
+.card-price {
+    font-size: 24px;
+    color: #28a745;
+    font-weight: 800;
+    background: #e6f9ec;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.card-footer { padding: 0 25px 25px 25px; }
+
+/* 5. ADVANCED BUTTONS */
+button, .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* The Glowing "Add to Cart" Button */
+.btn-add {
+    width: 100%;
+    background: linear-gradient(45deg, #febd69, #f0a025);
+    color: #111;
+    border: none;
+    padding: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(240, 160, 37, 0.4);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.btn-add:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(240, 160, 37, 0.6);
+}
+.btn-add:active { transform: scale(0.95); }
+
+/* Standard Buttons */
+.btn-primary { background-color: var(--primary); color: #111; }
+.btn-primary:hover { background-color: #f0a025; }
+
+.btn-success { background-color: var(--green); color: white; }
+.btn-success:hover { background-color: #218838; }
+
+.btn-danger { background-color: var(--red); color: white; font-size: 12px; padding: 5px 10px; }
+.btn-danger:hover { background-color: #c82333; }
+
+/* 6. FORMS (Login, Register, Upload) */
+.form-box {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 400px;
+    margin: 30px auto; 
+    border-top: 5px solid var(--primary); /* Nice accent color on top */
+}
+
+input[type="text"], 
+input[type="password"], 
+input[type="number"], 
+input[type="file"],
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Softer corners */
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(254, 189, 105, 0.6);
+}
+
+/* 7. TABLES (Dashboard & Admin) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+th {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+td { padding: 15px; border-bottom: 1px solid #eee; }
+tr:hover { background-color: #f9f9f9; }
+
+/* 8. TOAST NOTIFICATIONS (Popup Messages) */
+#toast-box {
+    position: fixed;
+    top: 90px;
+    right: 30px;
+    z-index: 9999;
+}
+
+.toast {
+    width: 350px;
+    background: white;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-left: 6px solid var(--green);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+    font-weight: 600;
+}
+
+.toast i { font-size: 24px; color: var(--green); margin-right: 15px; }
+.toast.error { border-left-color: var(--red); }
+.toast.error i { color: var(--red); }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+@keyframes fadeOut {
+    to { opacity: 0; width: 0; padding: 0; margin: 0; }
+}
+
+/* Sidebar for Search/Filter */
+.sidebar h3 { font-size: 18px; color: var(--dark); }
+.sidebar ul li a { text-decoration: none; color: #555; display: block; padding: 5px 0; transition:0.2s; }
+.sidebar ul li a:hover { color: var(--primary); padding-left: 5px; }
+
+/* Product Grid Layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+
+/* HERO SLIDER STYLES */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    overflow: hidden;
+    margin-bottom: 40px;
+    background: #000; /* Fallback color */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1; /* Show active slide */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6); /* Darkens image so text is readable */
+}
+
+/* Text on top of the image */
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%;
+}
+
+.slide-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+/* Slider Button */
+.btn-slider {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary);
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+.btn-slider:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Navigation Arrows */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.prev-btn:hover, .next-btn:hover { background: var(--primary); color: black; }
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+/* FORCE HERO TEXT TO BE WHITE */
+.hero h1, 
+.hero p {
+    color: white !important;
+}
+
+/* assets/css/style.css - Add this at the bottom */
+
+/* DISABLE CARD ANIMATION FOR SHOP PAGE */
+.product-grid.no-hover .card:hover {
+    transform: none !important; /* Stop lifting */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; /* Keep original shadow */
+    z-index: 0 !important;
+}
+
+.product-grid.no-hover .card:hover img {
+    transform: none !important; /* Stop image zooming */
+}
+
+/* --- SMOOTHNESS UPGRADE PACK (Add to bottom of style.css) --- */
+
+/* 1. Global Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Custom Scrollbar (Premium Look) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary); 
+}
+
+/* 3. Page Load Animation (No harsh flashes) */
+body {
+    animation: pageFadeIn 0.8s ease-out;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. Scroll Reveal Classes (Used by JS) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 5. Smooth Button Click Effect */
+button, .btn, .btn-add, .btn-primary {
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+button:active, .btn:active {
+    transform: scale(0.95); /* Gentle click press */
+}
+
+
+
+  /* --- AMAZON CORE ARCHITECTURE --- */
+        body { background-color: #e3e6e6; font-family: "Amazon Ember", Arial, sans-serif; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* 1. IMMERSIVE HERO SLIDER */
+        .amz-hero {
+            position: relative;
+            max-width: 1500px;
+            margin: 0 auto;
+            z-index: 0;
+        }
+        
+        .slider-track { display: flex; transition: transform 0.4s ease-out; width: 100%; }
+        
+        .hero-img {
+            min-width: 100%;
+            height: 600px;
+            object-fit: cover;
+            /* The "Amazon Fade" - Blends image into gray background */
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+        }
+
+        .slider-btn {
+            position: absolute; top: 25%; transform: translateY(-50%);
+            background: transparent; border: none; font-size: 50px; color: white;
+            cursor: pointer; padding: 20px; z-index: 10; opacity: 0.5;
+        }
+        .slider-btn:hover { opacity: 1; border: 1px solid white; background: rgba(0,0,0,0.1); }
+        .prev { left: 0; } .next { right: 0; }
+
+        /* 2. THE OVERLAP GRID (Signature Look) */
+        .content-layer {
+            max-width: 1460px;
+            margin: -350px auto 0; /* PULLS CONTENT UP */
+            padding: 0 20px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .amz-card {
+            background: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 420px;
+            z-index: 2;
+            transition: 0.3s;
+        }
+        
+        .amz-card h2 { font-size: 21px; font-weight: 700; margin: 0 0 10px 0; color: #0F1111; line-height: 1.3; }
+        
+        .cta-link { color: #007185; font-size: 13px; font-weight: 500; margin-top: auto; display: block; }
+        .cta-link:hover { color: #c7511f; text-decoration: underline; }
+
+        /* Card Content Styles */
+        .single-img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 10px; }
+        
+        .quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%; align-content: start; }
+        .quad-item img { width: 100%; height: 110px; object-fit: cover; margin-bottom: 5px; }
+        .quad-lbl { font-size: 12px; color: #0F1111; line-height: 1.2; display:block; }
+
+        /* 3. HORIZONTAL PRODUCT STRIP */
+        .strip-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .strip-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 15px; }
+        .strip-header h3 { margin: 0; font-size: 21px; color: #0F1111; }
+        .strip-header a { font-size: 14px; color: #007185; }
+
+        .h-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+        }
+        .h-slider::-webkit-scrollbar { height: 6px; }
+        .h-slider::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+        .prod-thumb {
+            min-width: 180px; max-width: 180px;
+            scroll-snap-align: start;
+        }
+        .prod-thumb img { width: 100%; height: 180px; object-fit: contain; }
+        
+        .badge-deal { background: #cc0c39; color: white; padding: 4px 6px; font-size: 12px; font-weight: 700; border-radius: 2px; display: inline-block; margin-top: 5px; }
+        .deal-txt { color: #cc0c39; font-weight: 600; font-size: 12px; margin-left: 5px; }
+        
+        .price-row { margin-top: 5px; font-size: 17px; color: #0F1111; }
+        .price-row sup { font-size: 10px; }
+        .old-price { font-size: 12px; color: #565959; text-decoration: line-through; }
+
+        /* 4. SIGN IN PROMPT */
+        .signin-box {
+            grid-column: span 4; /* Full width on some layouts */
+            background: white; padding: 30px; text-align: center; border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-top: 20px;
+        }
+        .btn-yellow {
+            background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+            border: 1px solid #a88734; border-radius: 3px;
+            padding: 6px 100px; color: #111; font-size: 13px; font-weight: 700;
+            display: inline-block; margin: 10px 0;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) { .card-grid { grid-template-columns: repeat(3, 1fr); } .amz-card:last-child { display: none; } }
+        @media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } .content-layer { margin-top: -150px; } .hero-img { height: 350px; } }
+        @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+
+
+    /* =========================================
+   UNIVERSAL AUTH PAGES RESPONSIVE FIX
+   (Applies to Vendor, Customer & Admin Login)
+   ========================================= */
+
+/* 1. Reset Body for Auth Pages */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Desktop Layout (Default) */
+.split-screen {
+    display: flex;
+    height: 100vh; /* Full screen on desktop */
+    width: 100vw;
+    overflow: hidden; /* No scroll on desktop */
+}
+
+.left-panel {
+    flex: 1.2; /* Image takes slightly more space */
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    overflow-y: auto; /* Scroll inside the form panel if needed */
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+}
+
+/* 3. MOBILE LAYOUT (Phones & Tablets) */
+@media (max-width: 768px) {
+    
+    /* Allow the page to scroll naturally */
+    body {
+        height: auto;
+        overflow-y: auto; 
+    }
+
+    /* Stack Panels Vertically */
+    .split-screen {
+        flex-direction: column;
+        height: auto !important; /* Force height to grow */
+    }
+
+    /* Resize Image Panel */
+    .left-panel {
+        width: 100%;
+        min-height: 250px; /* Short banner on phone */
+        padding: 40px 20px;
+        flex: none; /* Stop flexing */
+        text-align: center;
+    }
+
+    .left-panel h1 { font-size: 2rem; } /* Smaller text */
+
+    /* Resize Form Panel */
+    .right-panel {
+        width: 100%;
+        flex: none;
+        padding: 20px;
+        align-items: flex-start; /* Align top */
+    }
+
+    .auth-container {
+        padding: 20px 0;
+        max-width: 100%;
+    }
+    
+    /* Fix Input Sizes */
+    .input-group input { font-size: 16px; } /* Prevents zoom on iPhone */
+}
